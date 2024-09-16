@@ -6,8 +6,10 @@ import { ThemeProvider } from 'styled-components'
 import { darkTheme, lightTheme } from '../utils/Theme'
 import styled  from 'styled-components'
 import {BrowserRouter , Routes,Route } from "react-router-dom"
-// import {Home} from './pages/Home'
-// import Video from './pages/video';
+import Home from './pages/Home'
+import Login from './pages/Login';
+import Video from './pages/Video';
+import SignInPage from './pages/Register';
 
 function App() {
 
@@ -15,11 +17,9 @@ function App() {
   background-color:${({theme})=>theme.bg};
   flex:7;
   color:${({theme})=>theme.text};
-  `;
+`;
 
-  const Wrapper = styled.div`
-  
-  `;
+  const Wrapper = styled.div``;
 
   const [darkMode,setDarkMode] = useState(true)
 
@@ -35,10 +35,16 @@ function App() {
         <Wrapper>
           <Routes>
             <Route path="/">
-              <Route index element={Home}/>
-              <Route path="video">
-               <Route path=":id" element={Video}/>
-                </Route>
+              <Route index element={<Home type="explore"/>}/>
+              <Route path='explore' element={<Home type="explore"/>}/>
+              {/* <Route path="register" element={<SignIn/>}/> */}
+              
+              <Route path="register" element={<SignInPage/>}/>
+              <Route path="login" element={<Login/>}/>
+              {/* <Route path="videos/:id" element={<Video />} /> */}
+              <Route path="videos">
+               <Route path=":id" element={<Video/>}/>
+              </Route>
             </Route>
           </Routes>
         </Wrapper>
